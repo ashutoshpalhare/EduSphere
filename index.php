@@ -4,7 +4,7 @@ session_start();
 $db = new PDO('sqlite:' . __DIR__ . '/data.sqlite3');
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $db->exec('CREATE TABLE IF NOT EXISTS entries (id INTEGER PRIMARY KEY, title TEXT NOT NULL, category TEXT NOT NULL)');
-$categories = ["Infrastructure","Design","Analytics","Productivity"];
+$categories = ["Infrastructure","Design","Analytics","Productivity", "extra item"];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!hash_equals($_SESSION['csrf'] ?? '', $_POST['csrf'] ?? '')) { http_response_code(403); exit('Invalid request'); }
     if (($_POST['action'] ?? '') === 'delete') {
